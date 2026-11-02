@@ -112,9 +112,11 @@ Gazebo simulation running alongside RViz and the keyboard teleoperation node:
 * **Final State:** The particle cloud collapses into a single dense cluster directly under the robot model, with LiDAR rays aligned flush against the static walls[cite: 1, 4].---
 
 ### 3. Transition & Video Demonstration
-Live screen recording showing teleoperation commands and real-time AMCL convergence in Gazebo and RViz:
+Live screen recording showing keyboard teleoperation commands and real-time AMCL particle cloud convergence in Gazebo and RViz:
 
-https://github.com/Masterbpb/lost_robot/raw/main/images/demo_recording.mp4---
+[![Watch Demo Video](images/sim_teleop.png)](https://drive.google.com/file/d/1mADOasKqxcXqlHfQ8iZ0FYMg3wwA21_A/view?usp=sharing)
+
+> 📹 **[Click here to watch the full execution video on Google Drive](https://drive.google.com/file/d/1mADOasKqxcXqlHfQ8iZ0FYMg3wwA21_A/view?usp=sharing)**
 
 ## 📁 Repository Structure
 ```text
