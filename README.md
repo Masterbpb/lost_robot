@@ -86,28 +86,35 @@ export TURTLEBOT3_MODEL=burger
 rosrun turtlebot3_teleop turtlebot3_teleop_key
 ```[cite: 1, 4]
 
----
-
 ## 📊 Experimental Results & Outputs
 
-### 1. Initial State (Total Positional Uncertainty)
+### 1. Simulation & Teleoperation Environment
+Gazebo simulation running alongside RViz and the keyboard teleoperation node:
+
+![Gazebo and RViz Simulation](images/sim_teleop.png)
+
+---
+
+### 2. Initial State (Total Positional Uncertainty)
 * Calling `/global_localization` resets the belief state across the entire map[cite: 1, 4].
 * In RViz, the `/particlecloud` appears as a completely scattered cloud of orientation arrows covering all traversable free space[cite: 1, 4].
 * Robot state: **Completely lost ($P(x_0)$ is uniformly distributed)**[cite: 1, 4].
 
-### 2. Transition State (Resampling & Hypotheses Elimination)
+![Initial Global Scattering](images/initial_scatter.png)
+
+---
+
+### 3. Transition & Final Converged State
 * As velocity commands (`/cmd_vel`) are published via the teleoperation node[cite: 1, 4]:
   * The differential drive motion model shifts candidate particles[cite: 1, 4].
   * The `likelihood_field` compares incoming 2D LiDAR wall hits with known obstacles in `map.yaml`[cite: 1, 4].
-  * Particles inside walls or empty spaces with non-matching LiDAR distances are dynamically weighted down and pruned[cite: 1, 4].
-  * Particles that match the geometric structure of the walled hexagonal world are duplicated[cite: 1, 4].
+  * Non-matching particles are pruned while matching poses are duplicated[cite: 1, 4].
+* **Final State:** The particle cloud collapses into a single dense cluster directly under the robot model, with LiDAR rays aligned flush against the static walls[cite: 1, 4].---
 
-### 3. Final State (Convergence & Accurate Localization)
-* Within brief driving cycles, the particle cloud collapses into a single, high-density cluster centered directly under the robot model[cite: 1, 4].
-* Visual verification in RViz confirms that the simulated red LiDAR laser rays align flush against the static black boundary walls of the occupancy grid[cite: 1, 4].
-* The system achieves confident pose estimation without manual 2D pose initialization[cite: 1, 4].
+### 3. Transition & Video Demonstration
+Live screen recording showing teleoperation commands and real-time AMCL convergence in Gazebo and RViz:
 
----
+https://github.com/Masterbpb/lost_robot/raw/main/images/demo_recording.mp4---
 
 ## 📁 Repository Structure
 ```text
